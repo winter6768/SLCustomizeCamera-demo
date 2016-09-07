@@ -15,6 +15,15 @@
 		C8CF44051D7FBCCF00760005 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8CF44031D7FBCCF00760005 /* LaunchScreen.storyboard */; };
 		C8CF44101D7FBCCF00760005 /* SLCustomizeCamera_demoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF440F1D7FBCCF00760005 /* SLCustomizeCamera_demoTests.m */; };
 		C8CF441B1D7FBCCF00760005 /* SLCustomizeCamera_demoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF441A1D7FBCCF00760005 /* SLCustomizeCamera_demoUITests.m */; };
+		C8CF442E1D7FC1CF00760005 /* SLCustomizeCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF442D1D7FC1CF00760005 /* SLCustomizeCameraController.m */; };
+		C8CF44311D7FC21200760005 /* SLSingleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF44301D7FC21200760005 /* SLSingleViewController.m */; };
+		C8CF44341D7FC26B00760005 /* SLPSImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF44331D7FC26B00760005 /* SLPSImageViewController.m */; };
+		C8CF44371D7FC2B600760005 /* SLCompareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF44361D7FC2B600760005 /* SLCompareViewController.m */; };
+		C8CF443A1D7FC2CE00760005 /* SLAlbumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF44391D7FC2CE00760005 /* SLAlbumsViewController.m */; };
+		C8CF443D1D7FEBB100760005 /* CALayer+SLCameraAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF443C1D7FEBB100760005 /* CALayer+SLCameraAnimation.m */; };
+		C8CF44401D7FEBE400760005 /* UIImage+SLFilterEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF443F1D7FEBE400760005 /* UIImage+SLFilterEffect.m */; };
+		C8CF44431D7FEC0500760005 /* SLFilterEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF44421D7FEC0500760005 /* SLFilterEffect.m */; };
+		C8CF44461D7FEC2200760005 /* SLPSImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF44451D7FEC2200760005 /* SLPSImageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +60,24 @@
 		C8CF44161D7FBCCF00760005 /* SLCustomizeCamera-demoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SLCustomizeCamera-demoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8CF441A1D7FBCCF00760005 /* SLCustomizeCamera_demoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLCustomizeCamera_demoUITests.m; sourceTree = "<group>"; };
 		C8CF441C1D7FBCCF00760005 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C8CF442C1D7FC1CF00760005 /* SLCustomizeCameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLCustomizeCameraController.h; sourceTree = "<group>"; };
+		C8CF442D1D7FC1CF00760005 /* SLCustomizeCameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLCustomizeCameraController.m; sourceTree = "<group>"; };
+		C8CF442F1D7FC21200760005 /* SLSingleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSingleViewController.h; sourceTree = "<group>"; };
+		C8CF44301D7FC21200760005 /* SLSingleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSingleViewController.m; sourceTree = "<group>"; };
+		C8CF44321D7FC26B00760005 /* SLPSImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLPSImageViewController.h; sourceTree = "<group>"; };
+		C8CF44331D7FC26B00760005 /* SLPSImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLPSImageViewController.m; sourceTree = "<group>"; };
+		C8CF44351D7FC2B600760005 /* SLCompareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLCompareViewController.h; sourceTree = "<group>"; };
+		C8CF44361D7FC2B600760005 /* SLCompareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLCompareViewController.m; sourceTree = "<group>"; };
+		C8CF44381D7FC2CE00760005 /* SLAlbumsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLAlbumsViewController.h; sourceTree = "<group>"; };
+		C8CF44391D7FC2CE00760005 /* SLAlbumsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLAlbumsViewController.m; sourceTree = "<group>"; };
+		C8CF443B1D7FEBB100760005 /* CALayer+SLCameraAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+SLCameraAnimation.h"; sourceTree = "<group>"; };
+		C8CF443C1D7FEBB100760005 /* CALayer+SLCameraAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+SLCameraAnimation.m"; sourceTree = "<group>"; };
+		C8CF443E1D7FEBE400760005 /* UIImage+SLFilterEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SLFilterEffect.h"; sourceTree = "<group>"; };
+		C8CF443F1D7FEBE400760005 /* UIImage+SLFilterEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SLFilterEffect.m"; sourceTree = "<group>"; };
+		C8CF44411D7FEC0500760005 /* SLFilterEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLFilterEffect.h; sourceTree = "<group>"; };
+		C8CF44421D7FEC0500760005 /* SLFilterEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLFilterEffect.m; sourceTree = "<group>"; };
+		C8CF44441D7FEC2200760005 /* SLPSImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLPSImageView.h; sourceTree = "<group>"; };
+		C8CF44451D7FEC2200760005 /* SLPSImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLPSImageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +132,7 @@
 				C8CF43F91D7FBCCF00760005 /* AppDelegate.m */,
 				C8CF43FB1D7FBCCF00760005 /* ViewController.h */,
 				C8CF43FC1D7FBCCF00760005 /* ViewController.m */,
+				C8CF44281D7FC12B00760005 /* CustomizeCamera */,
 				C8CF43FE1D7FBCCF00760005 /* Main.storyboard */,
 				C8CF44011D7FBCCF00760005 /* Assets.xcassets */,
 				C8CF44031D7FBCCF00760005 /* LaunchScreen.storyboard */,
@@ -138,6 +166,31 @@
 				C8CF441C1D7FBCCF00760005 /* Info.plist */,
 			);
 			path = "SLCustomizeCamera-demoUITests";
+			sourceTree = "<group>";
+		};
+		C8CF44281D7FC12B00760005 /* CustomizeCamera */ = {
+			isa = PBXGroup;
+			children = (
+				C8CF442C1D7FC1CF00760005 /* SLCustomizeCameraController.h */,
+				C8CF442D1D7FC1CF00760005 /* SLCustomizeCameraController.m */,
+				C8CF442F1D7FC21200760005 /* SLSingleViewController.h */,
+				C8CF44301D7FC21200760005 /* SLSingleViewController.m */,
+				C8CF44351D7FC2B600760005 /* SLCompareViewController.h */,
+				C8CF44361D7FC2B600760005 /* SLCompareViewController.m */,
+				C8CF44321D7FC26B00760005 /* SLPSImageViewController.h */,
+				C8CF44331D7FC26B00760005 /* SLPSImageViewController.m */,
+				C8CF44381D7FC2CE00760005 /* SLAlbumsViewController.h */,
+				C8CF44391D7FC2CE00760005 /* SLAlbumsViewController.m */,
+				C8CF443B1D7FEBB100760005 /* CALayer+SLCameraAnimation.h */,
+				C8CF443C1D7FEBB100760005 /* CALayer+SLCameraAnimation.m */,
+				C8CF443E1D7FEBE400760005 /* UIImage+SLFilterEffect.h */,
+				C8CF443F1D7FEBE400760005 /* UIImage+SLFilterEffect.m */,
+				C8CF44411D7FEC0500760005 /* SLFilterEffect.h */,
+				C8CF44421D7FEC0500760005 /* SLFilterEffect.m */,
+				C8CF44441D7FEC2200760005 /* SLPSImageView.h */,
+				C8CF44451D7FEC2200760005 /* SLPSImageView.m */,
+			);
+			path = CustomizeCamera;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,8 +324,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8CF43FD1D7FBCCF00760005 /* ViewController.m in Sources */,
+				C8CF44431D7FEC0500760005 /* SLFilterEffect.m in Sources */,
+				C8CF44371D7FC2B600760005 /* SLCompareViewController.m in Sources */,
+				C8CF44311D7FC21200760005 /* SLSingleViewController.m in Sources */,
 				C8CF43FA1D7FBCCF00760005 /* AppDelegate.m in Sources */,
 				C8CF43F71D7FBCCF00760005 /* main.m in Sources */,
+				C8CF443A1D7FC2CE00760005 /* SLAlbumsViewController.m in Sources */,
+				C8CF44341D7FC26B00760005 /* SLPSImageViewController.m in Sources */,
+				C8CF44401D7FEBE400760005 /* UIImage+SLFilterEffect.m in Sources */,
+				C8CF442E1D7FC1CF00760005 /* SLCustomizeCameraController.m in Sources */,
+				C8CF44461D7FEC2200760005 /* SLPSImageView.m in Sources */,
+				C8CF443D1D7FEBB100760005 /* CALayer+SLCameraAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +407,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: wanpeng chen (QRJ9B9G6B3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -367,6 +430,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "8b707164-26dc-4224-8e81-5b51ac2f3d31";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -389,6 +453,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: wanpeng chen (QRJ9B9G6B3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -404,6 +469,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "8b707164-26dc-4224-8e81-5b51ac2f3d31";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -413,10 +479,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: wanpeng chen (QRJ9B9G6B3)";
 				INFOPLIST_FILE = "SLCustomizeCamera-demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ailing.SLCustomizeCamera-demo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ailing.SLineHD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "8b707164-26dc-4224-8e81-5b51ac2f3d31";
 			};
 			name = Debug;
 		};
@@ -424,10 +493,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: wanpeng chen (QRJ9B9G6B3)";
 				INFOPLIST_FILE = "SLCustomizeCamera-demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ailing.SLCustomizeCamera-demo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ailing.SLineHD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "8b707164-26dc-4224-8e81-5b51ac2f3d31";
 			};
 			name = Release;
 		};

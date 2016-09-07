@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "SLCustomizeCameraController.h"
 
 @interface ViewController ()
 
@@ -16,12 +17,31 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
+    self.view.backgroundColor = [UIColor lightGrayColor];
+    
+    UIButton *button = [UIButton new];
+    [button setBackgroundColor: [UIColor darkGrayColor]];
+    [button setTitle:@"点击获取图片" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.view addSubview:button];
+    
+    button.frame = CGRectMake(0, 0, 300, 300);
+    button.center = self.view.center;
+    [button addTarget:self action:@selector(buttonTap:) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)buttonTap:(UIButton *)button
+{
+    SLCustomizeCameraController *camera = [[SLCustomizeCameraController alloc]init];
+    
+    [camera setCompletionBlock:^(UIImage *image) {
+        
+        [button setBackgroundImage:image forState:UIControlStateNormal];
+    }];
+    
+    [self presentViewController:camera animated:YES completion:nil];
 }
+
 
 @end
