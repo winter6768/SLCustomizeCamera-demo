@@ -153,11 +153,11 @@
         [single setCompareShootBlock:^(UIImage *image) {
             
             UIImageView *imageview = [[UIImageView alloc]initWithImage:image];
-            imageview.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+            imageview.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width);
             imageview.tag = 777;
             [sc_select addSubview:imageview];
             
-            sc_select.contentSize = image.size;
+            sc_select.contentSize = imageview.frame.size;
             btn_delete.enabled = YES;
             btn_delete.alpha = 1;
             
@@ -204,10 +204,12 @@
         size_t width = CGImageGetWidth(takenCGImage);
         size_t height = CGImageGetHeight(takenCGImage);
         
-        CGFloat image_width = imageView.image.size.width;
-        CGFloat image_height = imageView.image.size.height;
-        CGRect cropRect = CGRectMake(sc.contentOffset.x / image_width * width, sc.contentOffset.y / image_height * height,
-                                     sc.frame.size.width / image_width * width, sc.frame.size.height / image_height * height);
+        CGFloat image_width = imageView.frame.size.width;
+        CGFloat image_height = imageView.frame.size.height;
+        CGRect cropRect = CGRectMake(sc.contentOffset.x / image_width * width,
+                                     sc.contentOffset.y / image_height * height,
+                                     sc.frame.size.width / image_width * width,
+                                     sc.frame.size.height / image_height * height);
         
         CGImageRef cropCGImage = CGImageCreateWithImageInRect(takenCGImage, cropRect);
         UIImage *image = [UIImage imageWithCGImage:cropCGImage scale:imageView.image.scale orientation:imageView.image.imageOrientation];
@@ -223,7 +225,9 @@
         }
     }
     
-    CGSize size = CGSizeMake(self.view.frame.size.width, self.view.frame.size.width);
+    
+//  可以把图片绘制到指定大小 但是图片会有稍微模糊  使用图片原尺寸拼接则不会有变化
+    CGSize size = CGSizeMake(image_left.size.height, image_left.size.height);
     UIGraphicsBeginImageContextWithOptions(size, NO, 1);
     [image_left drawInRect:CGRectMake(0, 0, size.width/2.0, size.height)];
     [image_right drawInRect:CGRectMake(size.width/2.0, 0, size.width/2.0, size.height)];

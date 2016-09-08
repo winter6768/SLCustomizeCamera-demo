@@ -11,6 +11,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 
 #import "CALayer+SLCameraAnimation.h"
+#import "UIImage+Orientation.h"
 
 #import "SLCompareViewController.h"
 #import "SLPSImageViewController.h"
@@ -73,6 +74,7 @@
 -(void)initAVCaptureSession
 {
     self.session = [[AVCaptureSession alloc]init];
+    self.session.sessionPreset = AVCaptureSessionPresetPhoto;
     
     NSError *error;
     
@@ -354,10 +356,6 @@
 -(void)cameraShoot:(UIButton *)button
 {
     AVCaptureConnection *stillImageConnection = [self.stillImageOutput connectionWithMediaType:AVMediaTypeVideo];
-    UIDeviceOrientation curDeviceOrientation = [[UIDevice currentDevice] orientation];
-    AVCaptureVideoOrientation avcaptureOrientation = [self avOrientationForDeviceOrientation:curDeviceOrientation];
-    [stillImageConnection setVideoOrientation:avcaptureOrientation];
-    [stillImageConnection setVideoScaleAndCropFactor:1];
     
     [self.stillImageOutput captureStillImageAsynchronouslyFromConnection:stillImageConnection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
         
@@ -392,39 +390,18 @@
                                  outputRect.size.width * width, outputRect.size.height * height);
     
     CGImageRef cropCGImage = CGImageCreateWithImageInRect(takenCGImage, cropRect);
-    CGFloat scale = cropRect.size.height / previewBounds.size.height;
-    //    scale = 1;
-    image = [UIImage imageWithCGImage:cropCGImage scale:scale orientation:image.imageOrientation];
+    
+    
+//    系统自带的相机 拍出的照片是原始尺寸，scale 为 1 方向是默认方向
+//    CGFloat scale = cropRect.size.height / previewBounds.size.height;
+    image = [UIImage imageWithCGImage:cropCGImage scale:1 orientation:image.imageOrientation];
+    
     CGImageRelease(cropCGImage);
     
-    return image;
-    //    return [self imageWithImageSimple:image scaledToSize:previewBounds.size];
-}
-
-//压缩图片尺寸
--(UIImage *)imageWithImageSimple:(UIImage *)image scaledToSize:(CGSize)newSize
-{
-    //    UIGraphicsBeginImageContext(newSize);
-    UIGraphicsBeginImageContextWithOptions(newSize, NO, 1);
-    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-    UIImage * newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
-}
-
--(AVCaptureVideoOrientation)avOrientationForDeviceOrientation:(UIDeviceOrientation)deviceOrientation
-{
-    AVCaptureVideoOrientation result = (AVCaptureVideoOrientation)deviceOrientation;
-    if ( deviceOrientation == UIDeviceOrientationLandscapeLeft)
-    {
-        result = AVCaptureVideoOrientationLandscapeRight;
-    }
-    else if ( deviceOrientation == UIDeviceOrientationLandscapeRight)
-    {
-        result = AVCaptureVideoOrientationLandscapeLeft;
-    }
+    //  iOS以 home键在右侧为默认图片方向，所以需要先把图片方向转过来
+    image = [image fixOrientation];
     
-    return result;
+    return image;
 }
 
 #pragma mark - 对比图

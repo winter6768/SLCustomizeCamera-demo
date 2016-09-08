@@ -29,6 +29,7 @@
     self.view.backgroundColor = [UIColor colorWithRed:49/255.0 green:46/255.0 blue:63/255.0 alpha:1];
     
     [self setupUI];
+    
     [self setupFilterUI];
 }
 
@@ -95,30 +96,46 @@
     sc_filter.frame = CGRectMake(0, 20, view_middle.frame.size.width, 150);
     [view_middle addSubview:sc_filter];
     
-    NSArray *arr_filter = [SLFilterEffect allFilter];
-    sc_filter.contentSize = CGSizeMake(arr_filter.count * 115 + 5, sc_filter.frame.size.height);
-    
-    [arr_filter enumerateObjectsUsingBlock:^(SLFilterEffect *filter, NSUInteger idx, BOOL * stop) {
+    //    滤镜渲染 会造成内存突增，引起页面卡顿 所以需要放到其他线程渲染
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        UIImage *showImage = [self.image SLFilterEffect:filter];
+        NSArray *arr_filter = [SLFilterEffect allFilter];
+
+        NSMutableArray *arr_image = [NSMutableArray new];
         
-        SLPSImageView *image = [SLPSImageView new];
-        image.frame = CGRectMake(5 + idx * 115, 0, 110, sc_filter.frame.size.height);
-        image.psImage = showImage;
-        image.psTitle = filter.title;
-        [sc_filter addSubview:image];
-        
-        if (!idx)
-        {
-            image.psSelected = YES;
-            image_filterSelect = image;
-        }
-        
-        image.tag = idx;
-        [image addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(filterImageTap:)]];
-        
-    }];
-    
+        [arr_filter enumerateObjectsUsingBlock:^(SLFilterEffect *filter, NSUInteger idx, BOOL * stop) {
+            
+            UIImage *showImage = [self.image SLFilterEffect:filter];
+            [arr_image addObject:showImage];
+        }];
+
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+
+            sc_filter.contentSize = CGSizeMake(arr_image.count * 115 + 5, sc_filter.frame.size.height);
+            
+            [arr_image enumerateObjectsUsingBlock:^(UIImage *image, NSUInteger idx, BOOL * stop) {
+                
+                SLFilterEffect *filter = arr_filter[idx];
+                SLPSImageView *imageView = [SLPSImageView new];
+                imageView.frame = CGRectMake(5 + idx * 115, 0, 110, sc_filter.frame.size.height);
+                imageView.psImage = image;
+                imageView.psTitle = filter.title;
+                [sc_filter addSubview:imageView];
+                
+                if (!idx)
+                {
+                    imageView.psSelected = YES;
+                    image_filterSelect = imageView;
+                }
+                
+                imageView.tag = idx;
+                [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(filterImageTap:)]];
+                
+            }];
+
+        });
+    });
 }
 
 #pragma mark - 滤镜效果图片点击

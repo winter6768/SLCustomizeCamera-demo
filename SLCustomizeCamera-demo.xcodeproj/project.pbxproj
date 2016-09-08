@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C825189C1D814B4500D08109 /* UIImage+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = C825189B1D814B4500D08109 /* UIImage+Orientation.m */; };
 		C8CF43F71D7FBCCF00760005 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF43F61D7FBCCF00760005 /* main.m */; };
 		C8CF43FA1D7FBCCF00760005 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF43F91D7FBCCF00760005 /* AppDelegate.m */; };
 		C8CF43FD1D7FBCCF00760005 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF43FC1D7FBCCF00760005 /* ViewController.m */; };
@@ -44,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C825189A1D814B4500D08109 /* UIImage+Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Orientation.h"; sourceTree = "<group>"; };
+		C825189B1D814B4500D08109 /* UIImage+Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Orientation.m"; sourceTree = "<group>"; };
 		C8CF43F21D7FBCCF00760005 /* SLCustomizeCamera-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SLCustomizeCamera-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8CF43F61D7FBCCF00760005 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C8CF43F81D7FBCCF00760005 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -185,6 +188,8 @@
 				C8CF443C1D7FEBB100760005 /* CALayer+SLCameraAnimation.m */,
 				C8CF443E1D7FEBE400760005 /* UIImage+SLFilterEffect.h */,
 				C8CF443F1D7FEBE400760005 /* UIImage+SLFilterEffect.m */,
+				C825189A1D814B4500D08109 /* UIImage+Orientation.h */,
+				C825189B1D814B4500D08109 /* UIImage+Orientation.m */,
 				C8CF44411D7FEC0500760005 /* SLFilterEffect.h */,
 				C8CF44421D7FEC0500760005 /* SLFilterEffect.m */,
 				C8CF44441D7FEC2200760005 /* SLPSImageView.h */,
@@ -323,6 +328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C825189C1D814B4500D08109 /* UIImage+Orientation.m in Sources */,
 				C8CF43FD1D7FBCCF00760005 /* ViewController.m in Sources */,
 				C8CF44431D7FEC0500760005 /* SLFilterEffect.m in Sources */,
 				C8CF44371D7FC2B600760005 /* SLCompareViewController.m in Sources */,
@@ -568,6 +574,7 @@
 				C8CF44211D7FBCCF00760005 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C8CF44221D7FBCCF00760005 /* Build configuration list for PBXNativeTarget "SLCustomizeCamera-demoTests" */ = {
 			isa = XCConfigurationList;
@@ -576,6 +583,7 @@
 				C8CF44241D7FBCCF00760005 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C8CF44251D7FBCCF00760005 /* Build configuration list for PBXNativeTarget "SLCustomizeCamera-demoUITests" */ = {
 			isa = XCConfigurationList;
@@ -584,6 +592,7 @@
 				C8CF44271D7FBCCF00760005 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
