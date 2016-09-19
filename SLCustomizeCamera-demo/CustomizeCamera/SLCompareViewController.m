@@ -8,7 +8,10 @@
 
 #import "SLCompareViewController.h"
 #import "SLSingleViewController.h"
-#import "SLPSImageViewController.h"
+#import "SLRotateImageViewController.h"
+
+#import "SLAlbumsViewController.h"
+#import "SLAlbumsResource.h"
 
 @interface SLCompareViewController ()
 {
@@ -18,7 +21,11 @@
     
     UIScrollView *sc_select;
     
+    UIImageView *image_photo;
+    
     NSInteger imageCount;
+    
+    SLAlbumsGroupModel *groupModel;
 }
 
 @end
@@ -33,6 +40,13 @@
     self.view.backgroundColor = [UIColor colorWithRed:49/255.0 green:46/255.0 blue:63/255.0 alpha:1];
     
     [self setupUI];
+    
+
+    [[SLAlbumsResource sharedInstance]getRecentPhotosGroupCompletion:^(SLAlbumsGroupModel *model) {
+        
+        groupModel = model;
+        image_photo.image = model.posterImage;
+    }];
 }
 
 #pragma mark - 初始化
@@ -113,12 +127,12 @@
     [self.view addSubview:btn_close];
     
     //    相册
-    
-    UIImageView *image_photo = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 46, 46)];
+    image_photo = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 46, 46)];
     image_photo.center = CGPointMake(self.view.frame.size.width / 4.0 * 3 + 20, btn_close.center.y);
-    image_photo.backgroundColor = [UIColor lightGrayColor];
+    image_photo.userInteractionEnabled = YES;
     [image_photo addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cameraAlbums:)]];
     [self.view addSubview:image_photo];
+    
 }
 
 #pragma mark - 删除
@@ -186,7 +200,9 @@
 #pragma mark - 相册
 -(void)cameraAlbums:(UITapGestureRecognizer *)tap
 {
-    
+    SLAlbumsViewController *cus = [[SLAlbumsViewController alloc]init];
+    cus.recentPhotosModel = groupModel;
+    [self.navigationController pushViewController:cus animated:YES];
 }
 
 #pragma mark - 确定
@@ -225,7 +241,6 @@
         }
     }
     
-    
 //  可以把图片绘制到指定大小 但是图片会有稍微模糊  使用图片原尺寸拼接则不会有变化
     CGSize size = CGSizeMake(image_left.size.height, image_left.size.height);
     UIGraphicsBeginImageContextWithOptions(size, NO, 1);
@@ -234,9 +249,9 @@
     UIImage * newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    SLPSImageViewController *psImage = [[SLPSImageViewController alloc]init];
-    psImage.image = newImage;
-    [self.navigationController pushViewController:psImage animated:YES];
+    SLRotateImageViewController *rotateImage = [[SLRotateImageViewController alloc]init];
+    rotateImage.image = newImage;
+    [self.navigationController pushViewController:rotateImage animated:YES];
     
 }
 

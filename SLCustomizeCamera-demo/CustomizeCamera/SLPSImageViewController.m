@@ -36,6 +36,7 @@
 -(void)setupUI
 {
     image_show = [[UIImageView alloc]initWithImage:self.image];
+    image_show.contentMode = UIViewContentModeScaleAspectFit;
     image_show.frame = CGRectMake(0, 50, self.view.frame.size.width, self.view.frame.size.width);
     [self.view addSubview:image_show];
     
@@ -67,10 +68,10 @@
     CGFloat point_x = btn_back.frame.origin.x + btn_back.frame.size.width;
     
     //    贴纸   滤镜  旋转
-    NSArray *arr_image = @[@"cameraSticker",@"cameraFilter",@"cameraRotate"];
+    NSArray *arr_image = @[@"cameraSticker",@"cameraFilter"];
     for (int i = 0; i < arr_image.count; i ++)
     {
-        point_x += space_middle / 4.0;
+        point_x += space_middle / 3.0;
         
         UIButton *button = [UIButton new];
         [button setImage:[UIImage imageNamed:arr_image[i]] forState:UIControlStateNormal];

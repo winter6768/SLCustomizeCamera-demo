@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		C825189C1D814B4500D08109 /* UIImage+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = C825189B1D814B4500D08109 /* UIImage+Orientation.m */; };
+		C8A359C91D8E6E2A00F4FEFF /* SLRotateImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A359C81D8E6E2A00F4FEFF /* SLRotateImageViewController.m */; };
+		C8A359CC1D8E903C00F4FEFF /* SLImageViewerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A359CB1D8E903C00F4FEFF /* SLImageViewerView.m */; };
+		C8A786711D8286C60074AC39 /* SLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A786701D8286C60074AC39 /* SLButton.m */; };
+		C8A786741D82AF520074AC39 /* SLAlbumsListView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A786731D82AF520074AC39 /* SLAlbumsListView.m */; };
+		C8AD88C51D865030009E0973 /* SLAlbumsResource.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AD88C41D865030009E0973 /* SLAlbumsResource.m */; };
+		C8AD88C81D86980A009E0973 /* SLAlbumsGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AD88C71D86980A009E0973 /* SLAlbumsGroupModel.m */; };
+		C8AD88CB1D86A931009E0973 /* SLAlbumsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AD88CA1D86A931009E0973 /* SLAlbumsCell.m */; };
 		C8CF43F71D7FBCCF00760005 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF43F61D7FBCCF00760005 /* main.m */; };
 		C8CF43FA1D7FBCCF00760005 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF43F91D7FBCCF00760005 /* AppDelegate.m */; };
 		C8CF43FD1D7FBCCF00760005 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF43FC1D7FBCCF00760005 /* ViewController.m */; };
@@ -47,6 +54,20 @@
 /* Begin PBXFileReference section */
 		C825189A1D814B4500D08109 /* UIImage+Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Orientation.h"; sourceTree = "<group>"; };
 		C825189B1D814B4500D08109 /* UIImage+Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Orientation.m"; sourceTree = "<group>"; };
+		C8A359C71D8E6E2A00F4FEFF /* SLRotateImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLRotateImageViewController.h; sourceTree = "<group>"; };
+		C8A359C81D8E6E2A00F4FEFF /* SLRotateImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLRotateImageViewController.m; sourceTree = "<group>"; };
+		C8A359CA1D8E903C00F4FEFF /* SLImageViewerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLImageViewerView.h; sourceTree = "<group>"; };
+		C8A359CB1D8E903C00F4FEFF /* SLImageViewerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLImageViewerView.m; sourceTree = "<group>"; };
+		C8A7866F1D8286C60074AC39 /* SLButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLButton.h; sourceTree = "<group>"; };
+		C8A786701D8286C60074AC39 /* SLButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLButton.m; sourceTree = "<group>"; };
+		C8A786721D82AF520074AC39 /* SLAlbumsListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLAlbumsListView.h; sourceTree = "<group>"; };
+		C8A786731D82AF520074AC39 /* SLAlbumsListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLAlbumsListView.m; sourceTree = "<group>"; };
+		C8AD88C31D865030009E0973 /* SLAlbumsResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLAlbumsResource.h; sourceTree = "<group>"; };
+		C8AD88C41D865030009E0973 /* SLAlbumsResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLAlbumsResource.m; sourceTree = "<group>"; };
+		C8AD88C61D86980A009E0973 /* SLAlbumsGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLAlbumsGroupModel.h; sourceTree = "<group>"; };
+		C8AD88C71D86980A009E0973 /* SLAlbumsGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLAlbumsGroupModel.m; sourceTree = "<group>"; };
+		C8AD88C91D86A931009E0973 /* SLAlbumsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLAlbumsCell.h; sourceTree = "<group>"; };
+		C8AD88CA1D86A931009E0973 /* SLAlbumsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLAlbumsCell.m; sourceTree = "<group>"; };
 		C8CF43F21D7FBCCF00760005 /* SLCustomizeCamera-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SLCustomizeCamera-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8CF43F61D7FBCCF00760005 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C8CF43F81D7FBCCF00760005 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -180,10 +201,20 @@
 				C8CF44301D7FC21200760005 /* SLSingleViewController.m */,
 				C8CF44351D7FC2B600760005 /* SLCompareViewController.h */,
 				C8CF44361D7FC2B600760005 /* SLCompareViewController.m */,
+				C8A359C71D8E6E2A00F4FEFF /* SLRotateImageViewController.h */,
+				C8A359C81D8E6E2A00F4FEFF /* SLRotateImageViewController.m */,
 				C8CF44321D7FC26B00760005 /* SLPSImageViewController.h */,
 				C8CF44331D7FC26B00760005 /* SLPSImageViewController.m */,
 				C8CF44381D7FC2CE00760005 /* SLAlbumsViewController.h */,
 				C8CF44391D7FC2CE00760005 /* SLAlbumsViewController.m */,
+				C8A786721D82AF520074AC39 /* SLAlbumsListView.h */,
+				C8A786731D82AF520074AC39 /* SLAlbumsListView.m */,
+				C8AD88C91D86A931009E0973 /* SLAlbumsCell.h */,
+				C8AD88CA1D86A931009E0973 /* SLAlbumsCell.m */,
+				C8AD88C31D865030009E0973 /* SLAlbumsResource.h */,
+				C8AD88C41D865030009E0973 /* SLAlbumsResource.m */,
+				C8AD88C61D86980A009E0973 /* SLAlbumsGroupModel.h */,
+				C8AD88C71D86980A009E0973 /* SLAlbumsGroupModel.m */,
 				C8CF443B1D7FEBB100760005 /* CALayer+SLCameraAnimation.h */,
 				C8CF443C1D7FEBB100760005 /* CALayer+SLCameraAnimation.m */,
 				C8CF443E1D7FEBE400760005 /* UIImage+SLFilterEffect.h */,
@@ -194,6 +225,10 @@
 				C8CF44421D7FEC0500760005 /* SLFilterEffect.m */,
 				C8CF44441D7FEC2200760005 /* SLPSImageView.h */,
 				C8CF44451D7FEC2200760005 /* SLPSImageView.m */,
+				C8A359CA1D8E903C00F4FEFF /* SLImageViewerView.h */,
+				C8A359CB1D8E903C00F4FEFF /* SLImageViewerView.m */,
+				C8A7866F1D8286C60074AC39 /* SLButton.h */,
+				C8A786701D8286C60074AC39 /* SLButton.m */,
 			);
 			path = CustomizeCamera;
 			sourceTree = "<group>";
@@ -328,6 +363,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8A786741D82AF520074AC39 /* SLAlbumsListView.m in Sources */,
+				C8A359C91D8E6E2A00F4FEFF /* SLRotateImageViewController.m in Sources */,
 				C825189C1D814B4500D08109 /* UIImage+Orientation.m in Sources */,
 				C8CF43FD1D7FBCCF00760005 /* ViewController.m in Sources */,
 				C8CF44431D7FEC0500760005 /* SLFilterEffect.m in Sources */,
@@ -335,11 +372,16 @@
 				C8CF44311D7FC21200760005 /* SLSingleViewController.m in Sources */,
 				C8CF43FA1D7FBCCF00760005 /* AppDelegate.m in Sources */,
 				C8CF43F71D7FBCCF00760005 /* main.m in Sources */,
+				C8A359CC1D8E903C00F4FEFF /* SLImageViewerView.m in Sources */,
+				C8AD88C51D865030009E0973 /* SLAlbumsResource.m in Sources */,
 				C8CF443A1D7FC2CE00760005 /* SLAlbumsViewController.m in Sources */,
 				C8CF44341D7FC26B00760005 /* SLPSImageViewController.m in Sources */,
 				C8CF44401D7FEBE400760005 /* UIImage+SLFilterEffect.m in Sources */,
+				C8AD88C81D86980A009E0973 /* SLAlbumsGroupModel.m in Sources */,
+				C8A786711D8286C60074AC39 /* SLButton.m in Sources */,
 				C8CF442E1D7FC1CF00760005 /* SLCustomizeCameraController.m in Sources */,
 				C8CF44461D7FEC2200760005 /* SLPSImageView.m in Sources */,
+				C8AD88CB1D86A931009E0973 /* SLAlbumsCell.m in Sources */,
 				C8CF443D1D7FEBB100760005 /* CALayer+SLCameraAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,6 +527,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: wanpeng chen (QRJ9B9G6B3)";
 				INFOPLIST_FILE = "SLCustomizeCamera-demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -499,6 +542,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: wanpeng chen (QRJ9B9G6B3)";
 				INFOPLIST_FILE = "SLCustomizeCamera-demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

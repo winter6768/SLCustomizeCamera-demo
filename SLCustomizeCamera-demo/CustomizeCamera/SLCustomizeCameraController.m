@@ -20,7 +20,6 @@
     if (self = [super init])
     {
         SLSingleViewController *single = [[SLSingleViewController alloc]init];
-        
         [self setViewControllers:@[single]];
     }
     

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SLAlbumsResource.h"
 
 @interface SLAlbumsViewController : UIViewController
+
+@property(nonatomic,strong)SLAlbumsGroupModel *recentPhotosModel;
 
 @end

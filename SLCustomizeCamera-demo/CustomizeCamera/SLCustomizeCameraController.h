@@ -10,6 +10,7 @@
 
 @interface SLCustomizeCameraController : UINavigationController
 
+/** 图片完成回调 */
 @property(nonatomic,copy)void(^completionBlock)(UIImage *);
 
 @end

@@ -14,8 +14,10 @@
 #import "UIImage+Orientation.h"
 
 #import "SLCompareViewController.h"
-#import "SLPSImageViewController.h"
+#import "SLRotateImageViewController.h"
 #import "SLAlbumsViewController.h"
+
+#import "SLAlbumsResource.h"
 
 @interface SLSingleViewController ()
 {
@@ -27,6 +29,10 @@
     CALayer *layer_grid;
     
     UIButton *btn_light;
+    
+    UIImageView *image_photo;
+    
+    SLAlbumsGroupModel *groupModel;
 }
 
 @property(nonatomic,strong)AVCaptureSession *session;
@@ -48,6 +54,13 @@
 
     [self initAVCaptureSession];
     [self setupUI];
+    
+    
+    [[SLAlbumsResource sharedInstance]getRecentPhotosGroupCompletion:^(SLAlbumsGroupModel *model) {
+        
+        groupModel = model;
+        image_photo.image = model.posterImage;
+    }];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -180,12 +193,12 @@
     [self.view addSubview:btn_compare];
     
     //    相册
-    UIImageView *image_photo = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 46, 46)];
+    image_photo = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 46, 46)];
     image_photo.center = CGPointMake(self.view.frame.size.width / 4.0 * 3 + btn_shoot.frame.size.width / 4.0, btn_shoot.center.y);
     image_photo.userInteractionEnabled = YES;
-    image_photo.backgroundColor = [UIColor lightGrayColor];
     [image_photo addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cameraAlbums:)]];
     [self.view addSubview:image_photo];
+    
 }
 
 #pragma mark - 闪光灯
@@ -371,9 +384,9 @@
         }
         else
         {
-            SLPSImageViewController *psImage = [[SLPSImageViewController alloc]init];
-            psImage.image = image;
-            [self.navigationController pushViewController:psImage animated:YES];
+            SLRotateImageViewController *rotateImage = [[SLRotateImageViewController alloc]init];
+            rotateImage.image = image;
+            [self.navigationController pushViewController:rotateImage animated:YES];
         }
     }];
 }
@@ -415,6 +428,7 @@
 -(void)cameraAlbums:(UITapGestureRecognizer *)tap
 {
     SLAlbumsViewController *cus = [[SLAlbumsViewController alloc]init];
+    cus.recentPhotosModel = groupModel;
     [self.navigationController pushViewController:cus animated:YES];
 }
 
