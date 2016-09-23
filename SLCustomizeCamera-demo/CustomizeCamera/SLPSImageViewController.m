@@ -8,17 +8,22 @@
 
 #import "SLPSImageViewController.h"
 #import "UIImage+SLFilterEffect.h"
-#import "SLPSImageView.h"
+#import "SLPSImageCell.h"
+#import "SLPSTitleView.h"
 
 #import "SLCustomizeCameraController.h"
 
-@interface SLPSImageViewController ()
+@interface SLPSImageViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 {
     UIImageView *image_show;
-    UIView *view_middle;
+    
+    SLPSTitleView *view_sticker;
+    
+    UICollectionView *myCollectionView;
+    NSMutableArray *arr_filter;
+    NSMutableArray *arr_sticker;
     
     UIButton *btn_select;
-    SLPSImageView *image_filterSelect;
 }
 @end
 
@@ -27,6 +32,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithRed:49/255.0 green:46/255.0 blue:63/255.0 alpha:1];
+    arr_filter = [NSMutableArray new];
+    arr_sticker = [NSMutableArray new];
+    
+    for (int i = 0; i < 8; i ++)
+    {
+        SLPSImageModel *model = [[SLPSImageModel alloc]init];
+//        model.image = nil;
+//        model.title = nil;
+        [arr_sticker addObject:model];
+    }
     
     [self setupUI];
     
@@ -37,19 +52,63 @@
 {
     image_show = [[UIImageView alloc]initWithImage:self.image];
     image_show.contentMode = UIViewContentModeScaleAspectFit;
-    image_show.frame = CGRectMake(0, 50, self.view.frame.size.width, self.view.frame.size.width);
+    image_show.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width);
     [self.view addSubview:image_show];
     
-    CGFloat frame_y = image_show.frame.origin.y + image_show.frame.size.height;
-    
-    view_middle = [[UIView alloc]initWithFrame:CGRectMake(0, frame_y, self.view.frame.size.width, self.view.frame.size.height - frame_y - 50)];
-    [self.view addSubview:view_middle];
-    
+    //    底部操作栏
     UIView *view_bottom = [UIView new];
     view_bottom.frame = CGRectMake(0, self.view.frame.size.height - 50, self.view.frame.size.width, 50);
     view_bottom.backgroundColor = [UIColor colorWithRed:49/255.0 green:46/255.0 blue:63/255.0 alpha:1];
     [self.view addSubview:view_bottom];
     
+    [self setupBottomView:view_bottom];
+    
+    CGFloat frame_y = image_show.frame.origin.y + image_show.frame.size.height;
+
+//    滤镜
+    UILabel *lab_filter = [[UILabel alloc]initWithFrame:CGRectMake(15, frame_y, 100, 50)];
+    lab_filter.textColor = [UIColor whiteColor];
+    lab_filter.font = [UIFont systemFontOfSize:14];
+    lab_filter.text = @"滤镜";
+    [self.view addSubview:lab_filter];
+    
+//    贴纸
+    view_sticker = [[SLPSTitleView alloc]initWithFrame:CGRectMake(0, frame_y, self.view.frame.size.width, 50)];
+    view_sticker.backgroundColor = self.view.backgroundColor;
+    view_sticker.titleArray = @[@"SLine",@"健康",@"饮食",@"鼓励",@"挑战"];
+    view_sticker.selectedIndex = 0;
+    [self.view addSubview:view_sticker];
+    
+    frame_y += view_sticker.frame.size.height;
+    
+//    分割线
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, frame_y, self.view.frame.size.width, .5)];
+    line.backgroundColor = [UIColor colorWithWhite:1 alpha:.2];
+    [self.view addSubview:line];
+    
+    frame_y += line.frame.size.height + 25;
+    
+    CGFloat height = self.view.frame.size.height - frame_y - 50;
+//    UICollectionView
+    UICollectionViewFlowLayout * viewLayout = [[UICollectionViewFlowLayout alloc]init];
+    viewLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    viewLayout.itemSize = CGSizeMake(110, height);
+    viewLayout.minimumLineSpacing = 5;
+    viewLayout.minimumInteritemSpacing = 5;
+    viewLayout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
+    
+    CGRect frame = CGRectMake(0, frame_y, self.view.frame.size.width, height);
+    myCollectionView = [[UICollectionView alloc]initWithFrame:frame collectionViewLayout:viewLayout];
+    myCollectionView.delegate = self;
+    myCollectionView.dataSource = self;
+    myCollectionView.showsHorizontalScrollIndicator = NO;
+    myCollectionView.backgroundColor = self.view.backgroundColor;
+    [myCollectionView registerClass:[SLPSImageCell class] forCellWithReuseIdentifier:@"SLPSImageCell"];
+    [self.view addSubview:myCollectionView];
+}
+
+-(void)setupBottomView:(UIView *)view_bottom
+{
     //    返回
     UIButton *btn_back = [UIButton new];
     [btn_back setImage:[UIImage imageNamed:@"cameraBack"] forState:UIControlStateNormal];
@@ -67,7 +126,7 @@
     CGFloat space_middle = view_bottom.frame.size.width - btn_back.frame.size.width - btn_finish.frame.size.width;
     CGFloat point_x = btn_back.frame.origin.x + btn_back.frame.size.width;
     
-    //    贴纸   滤镜  旋转
+    //    贴纸   滤镜
     NSArray *arr_image = @[@"cameraSticker",@"cameraFilter"];
     for (int i = 0; i < arr_image.count; i ++)
     {
@@ -83,7 +142,7 @@
         
         button.tag = i;
         
-        if (i == 1)
+        if (i == 0)
         {
             button.selected = YES;
             btn_select = button;
@@ -91,72 +150,65 @@
     }
 }
 
+#pragma mark - collectionDelegate
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    NSArray *arr = btn_select.tag ? arr_filter : arr_sticker;
+
+    return arr.count;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *arr = btn_select.tag ? arr_filter : arr_sticker;
+    
+    SLPSImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SLPSImageCell" forIndexPath:indexPath];
+    cell.model = arr[indexPath.item];
+    return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *arr = btn_select.tag ? arr_filter : arr_sticker;
+
+    SLPSImageModel *model = arr[indexPath.item];
+    image_show.image = model.image;
+}
+
+
 -(void)setupFilterUI
 {
-    UIScrollView *sc_filter = [UIScrollView new];
-    sc_filter.frame = CGRectMake(0, 20, view_middle.frame.size.width, 150);
-    [view_middle addSubview:sc_filter];
-    
     //    滤镜渲染 会造成内存突增，引起页面卡顿 所以需要放到其他线程渲染
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSArray *arr_filter = [SLFilterEffect allFilter];
-
-        NSMutableArray *arr_image = [NSMutableArray new];
+        NSArray *arr = [SLFilterEffect allFilter];
         
-        [arr_filter enumerateObjectsUsingBlock:^(SLFilterEffect *filter, NSUInteger idx, BOOL * stop) {
+        [arr enumerateObjectsUsingBlock:^(SLFilterEffect *filter, NSUInteger idx, BOOL * stop) {
             
             UIImage *showImage = [self.image SLFilterEffect:filter];
-            [arr_image addObject:showImage];
+            SLPSImageModel *model = [[SLPSImageModel alloc]init];
+            model.image = showImage;
+            model.title = filter.title;
+            [arr_filter addObject:model];
         }];
-
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-
-            sc_filter.contentSize = CGSizeMake(arr_image.count * 115 + 5, sc_filter.frame.size.height);
-            
-            [arr_image enumerateObjectsUsingBlock:^(UIImage *image, NSUInteger idx, BOOL * stop) {
-                
-                SLFilterEffect *filter = arr_filter[idx];
-                SLPSImageView *imageView = [SLPSImageView new];
-                imageView.frame = CGRectMake(5 + idx * 115, 0, 110, sc_filter.frame.size.height);
-                imageView.psImage = image;
-                imageView.psTitle = filter.title;
-                [sc_filter addSubview:imageView];
-                
-                if (!idx)
-                {
-                    imageView.psSelected = YES;
-                    image_filterSelect = imageView;
-                }
-                
-                imageView.tag = idx;
-                [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(filterImageTap:)]];
-                
-            }];
-
-        });
     });
-}
-
-#pragma mark - 滤镜效果图片点击
--(void)filterImageTap:(UITapGestureRecognizer *)tap
-{
-    SLPSImageView *image = (SLPSImageView *)tap.view;
-    image.psSelected = YES;
-    image_filterSelect.psSelected = NO;
-    image_filterSelect = image;
-    
-    image_show.image = image_filterSelect.psImage;
 }
 
 #pragma mark - 贴纸  滤镜 旋转
 -(void)psButtonTouch:(UIButton *)button
 {
+    if (button == btn_select)
+    {
+        return;
+    }
+    
+    view_sticker.hidden = button.tag;
     btn_select.selected = NO;
     button.selected = YES;
     btn_select = button;
     
+    [myCollectionView reloadData];
+    [myCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionLeft];
     
 }
 

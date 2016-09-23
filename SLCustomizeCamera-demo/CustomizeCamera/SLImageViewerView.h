@@ -10,6 +10,9 @@
 
 @interface SLImageViewerView : UIScrollView
 
+/** 默认显示图片 */
+@property(nonatomic,strong)UIImage *placeholderImage;
+
 /** 显示用图片 */
 @property(nonatomic,strong)UIImage *contentImage;
 

@@ -34,6 +34,7 @@
     [self setupUI];
     
     currentModel = self.recentPhotosModel;
+
     
     if (self.recentPhotosModel)
     {
@@ -45,7 +46,10 @@
         [groupArr addObjectsFromArray:arr];
     }];
     
-    [self loadPhotos];
+    if (!currentModel.photosArray.count)
+    {
+        [self loadPhotos];
+    }
 }
 
 #pragma mark - UI
@@ -161,6 +165,17 @@ static bool loading = NO;
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     SLPhotoModel *model = currentModel.photosArray[indexPath.row];
+    
+    if (self.compareDidSelectBlock)
+    {
+        [[SLAlbumsResource sharedInstance]getHDPhotos:model.url Completion:^(UIImage *image) {
+            
+            self.compareDidSelectBlock(image);
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        
+        return;
+    }
     
     SLRotateImageViewController *rotateImage = [[SLRotateImageViewController alloc]init];
     rotateImage.image = model.Thumbnail;

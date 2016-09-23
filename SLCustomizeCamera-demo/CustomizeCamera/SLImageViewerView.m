@@ -13,6 +13,8 @@
 {
     /** 展示的图片 */
     UIImageView *showImageView;
+    
+    UIImageView *placeholderImageView;
 }
 @end
 
@@ -42,35 +44,56 @@
     self.layer.borderWidth = selected ? 2 : 0;
 }
 
+-(void)setPlaceholderImage:(UIImage *)placeholderImage
+{
+    _placeholderImage = placeholderImage;
+    
+    if (placeholderImageView)
+    {
+        placeholderImageView.image = placeholderImage;
+        return;
+    }
+    
+    placeholderImageView = [[UIImageView alloc]initWithImage:placeholderImage];
+    placeholderImageView.frame = self.bounds;
+    placeholderImageView.contentMode = UIViewContentModeCenter;
+    [self addSubview:placeholderImageView];
+    [self sendSubviewToBack:placeholderImageView];
+}
+
 -(void)setContentImage:(UIImage *)contentImage
 {
     _contentImage = contentImage;
     
+    if (!contentImage)
+    {
+        placeholderImageView.hidden = NO;
+        self.contentSize = self.frame.size;
+        showImageView.hidden = YES;
+        return;
+    }
+    
+    placeholderImageView.hidden = YES;
+    showImageView.hidden = NO;
     if (showImageView)
     {
         self.zoomScale = 1;
         showImageView.image = contentImage;
-        
-        [UIView animateWithDuration:.4 animations:^{
-            
-            showImageView.frame = [self resizedFrameForImageSize:contentImage.size];
-        }];
-
+        showImageView.frame = [self resizedFrameForImageSize:contentImage.size];
         [self adjustContentSize];
         return;
     }
     
-    showImageView = [[UIImageView alloc] init];
-    showImageView.image = contentImage;
+    showImageView = [[UIImageView alloc] initWithImage:contentImage];
     showImageView.frame = [self resizedFrameForImageSize:contentImage.size];
-
     [self adjustContentSize];
     [self addSubview:showImageView];
 }
 
 -(CGRect)resizedFrameForImageSize:(CGSize)size
 {
-    CGFloat showWidth  = MIN(size.width, self.frame.size.width);
+    CGFloat _KWidth = MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    CGFloat showWidth  = MIN(size.width, _KWidth);
     CGFloat showHeight = showWidth * size.height / size.width;
     
     return CGRectMake(0, 0, showWidth, showHeight);
@@ -91,6 +114,11 @@
 
 -(UIImage *)editedImage
 {
+    if (!self.contentImage)
+    {
+        return nil;
+    }
+    
     UIImageOrientation orientation = self.contentImage.imageOrientation;;
     
     switch (self.directionType)
@@ -151,7 +179,7 @@
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
-    return showImageView;
+    return self.contentImage ? showImageView : nil;
 }
 
 

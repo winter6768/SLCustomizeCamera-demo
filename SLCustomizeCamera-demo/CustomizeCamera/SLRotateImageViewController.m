@@ -42,7 +42,8 @@
 -(void)setupUI
 {
     image_show = [[SLImageViewerView alloc]init];
-    image_show.frame = CGRectMake(0, 50, self.view.frame.size.width, self.view.frame.size.width);
+    image_show.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width);
+    image_show.center = self.view.center;
     image_show.clipsToBounds = NO;
     image_show.contentImage = self.image;
     [self.view addSubview:image_show];
@@ -60,10 +61,17 @@
     lab_tips.backgroundColor = color_shadow;
     [self.view addSubview:lab_tips];
     
-//    阴影遮罩
+    CGFloat y = lab_tips.frame.size.height;
+    //    阴影遮罩上
+    UIView *view_shadowTop = [UIView new];
+    view_shadowTop.frame = CGRectMake(0, y, self.view.frame.size.width, image_show.frame.origin.y - y);
+    view_shadowTop.backgroundColor = color_shadow;
+    [self.view addSubview:view_shadowTop];
+    
+    y += view_shadowTop.frame.size.height + image_show.frame.size.height;
+//    阴影遮罩下
     UIView *view_shadow = [UIView new];
-    CGFloat y = image_show.frame.size.height + image_show.frame.origin.y;
-    view_shadow.frame = CGRectMake(0, y, self.view.frame.size.width, self.view.frame.size.height - 50 - y);
+    view_shadow.frame = CGRectMake(0, y, self.view.frame.size.width, view_shadowTop.frame.size.height);
     view_shadow.backgroundColor = color_shadow;
     [self.view addSubview:view_shadow];
     

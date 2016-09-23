@@ -12,6 +12,7 @@
 
 #import "SLAlbumsViewController.h"
 #import "SLAlbumsResource.h"
+#import "SLImageViewerView.h"
 
 @interface SLCompareViewController ()
 {
@@ -19,13 +20,12 @@
     
     UIButton *btn_sure;
     
-    UIScrollView *sc_select;
-    
     UIImageView *image_photo;
     
-    NSInteger imageCount;
-    
     SLAlbumsGroupModel *groupModel;
+    
+    SLImageViewerView *image_left;
+    SLImageViewerView *image_right;
 }
 
 @end
@@ -35,7 +35,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    imageCount = 0;
     
     self.view.backgroundColor = [UIColor colorWithRed:49/255.0 green:46/255.0 blue:63/255.0 alpha:1];
     
@@ -77,30 +76,27 @@
     
     for (int i = 0; i < 2; i ++)
     {
-        UIScrollView *sc = [[UIScrollView alloc]initWithFrame:CGRectMake(width / 2.0 * i, 50, width / 2.0, width)];
+        SLImageViewerView *sc = [[SLImageViewerView alloc]initWithFrame:CGRectMake(width / 2.0 * i, 50, width / 2.0, width)];
         sc.backgroundColor = [UIColor colorWithRed:63/255.0 green:60/255.0 blue:81/255.0 alpha:1];
-        sc.tag = i + 1000;
-        sc.layer.borderColor = [UIColor redColor].CGColor;
         [self.view addSubview:sc];
         
-        UIImageView *imageview = [[UIImageView alloc]initWithFrame:sc.bounds];
-        imageview.image = [UIImage imageNamed:@"cameraDefault"];
-        imageview.contentMode = UIViewContentModeCenter;
-        [sc addSubview:imageview];
-        
+        sc.placeholderImage = [UIImage imageNamed:@"cameraDefault"];
         [sc addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewTap:)]];
-        sc.contentSize = sc.bounds.size;
         
-        if (!i)
+        if (i)
         {
-            sc.layer.borderWidth = 2;
-            sc_select = sc;
+            image_right = sc;
+        }
+        else
+        {
+            image_left = sc;
+            image_left.selected = YES;
         }
     }
     
     //    对比图
     UIButton *btn_compare = [UIButton new];
-    btn_compare.frame = CGRectMake(0, sc_select.frame.origin.y + sc_select.frame.size.height, 70, 50);
+    btn_compare.frame = CGRectMake(0, image_left.frame.origin.y + image_left.frame.size.height, 70, 50);
     btn_compare.center = CGPointMake(self.view.center.x, btn_compare.center.y);
     [btn_compare setTitle:@"对比图" forState:UIControlStateNormal];
     [btn_compare setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -138,12 +134,18 @@
 #pragma mark - 删除
 -(void)cameraDelete:(UIButton *)button
 {
-    [[sc_select viewWithTag:777]removeFromSuperview];
-    sc_select.contentSize = sc_select.bounds.size;
+    if (image_left.selected)
+    {
+        image_left.contentImage = nil;
+    }
+    else
+    {
+        image_right.contentImage = nil;
+    }
+    
     btn_delete.enabled = NO;
     btn_delete.alpha = .5;
     
-    imageCount -= 1;
     btn_sure.enabled = NO;
     btn_sure.alpha = .5;
 }
@@ -151,14 +153,14 @@
 #pragma mark - 图片点击
 -(void)imageViewTap:(UITapGestureRecognizer *)tap
 {
-    UIView *view = [tap.view viewWithTag:777];
+    SLImageViewerView *view = (SLImageViewerView *)tap.view;
     
-    btn_delete.enabled = view ? YES : NO;
-    btn_delete.alpha = view ? 1 : .5;
+    btn_delete.enabled = view.contentImage ? YES : NO;
+    btn_delete.alpha = view.contentImage ? 1 : .5;
     
-    if (tap.view == sc_select)
+    if (view.selected)
     {
-        if (view)
+        if (view.contentImage)
         {
             return;
         }
@@ -166,28 +168,21 @@
         SLSingleViewController *single = [[SLSingleViewController alloc]init];
         [single setCompareShootBlock:^(UIImage *image) {
             
-            UIImageView *imageview = [[UIImageView alloc]initWithImage:image];
-            imageview.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width);
-            imageview.tag = 777;
-            [sc_select addSubview:imageview];
-            
-            sc_select.contentSize = imageview.frame.size;
+            view.contentImage = image;
             btn_delete.enabled = YES;
             btn_delete.alpha = 1;
             
-            imageCount += 1;
-            
-            btn_sure.enabled = imageCount > 1 ? YES : NO;
-            btn_sure.alpha = imageCount > 1 ? 1 : .5;
+            BOOL finish = (image_left.contentImage && image_right.contentImage);
+            btn_sure.enabled = finish ? YES : NO;
+            btn_sure.alpha = finish ? 1 : .5;
             
         }];
         [self.navigationController pushViewController:single animated:YES];
     }
     else
     {
-        sc_select.layer.borderWidth = 0;
-        tap.view.layer.borderWidth = 2;
-        sc_select = (UIScrollView *)tap.view;
+        image_left.selected = (view == image_left) ? YES : NO;
+        image_right.selected = (view == image_left) ? NO : YES;
     }
 }
 
@@ -202,50 +197,34 @@
 {
     SLAlbumsViewController *cus = [[SLAlbumsViewController alloc]init];
     cus.recentPhotosModel = groupModel;
+    [cus setCompareDidSelectBlock:^(UIImage * image) {
+        
+        SLImageViewerView *view = image_left.selected ? image_left : image_right;
+        view.contentImage = image;
+        btn_delete.enabled = YES;
+        btn_delete.alpha = 1;
+        
+        BOOL finish = (image_left.contentImage && image_right.contentImage);
+        btn_sure.enabled = finish ? YES : NO;
+        btn_sure.alpha = finish ? 1 : .5;
+    }];
     [self.navigationController pushViewController:cus animated:YES];
 }
 
 #pragma mark - 确定
 -(void)cameraSure:(UIButton *)button
 {
-    UIImage *image_left = nil;
-    UIImage *image_right = nil;
+    UIImage *left  = image_left.editedImage;
+    UIImage *right = image_right.editedImage;
     
-    for (int i = 0; i < 2; i ++)
-    {
-        UIScrollView *sc = [self.view viewWithTag:1000 + i];
-        UIImageView *imageView = [sc viewWithTag:777];
-        
-        CGImageRef takenCGImage = imageView.image.CGImage;
-        size_t width = CGImageGetWidth(takenCGImage);
-        size_t height = CGImageGetHeight(takenCGImage);
-        
-        CGFloat image_width = imageView.frame.size.width;
-        CGFloat image_height = imageView.frame.size.height;
-        CGRect cropRect = CGRectMake(sc.contentOffset.x / image_width * width,
-                                     sc.contentOffset.y / image_height * height,
-                                     sc.frame.size.width / image_width * width,
-                                     sc.frame.size.height / image_height * height);
-        
-        CGImageRef cropCGImage = CGImageCreateWithImageInRect(takenCGImage, cropRect);
-        UIImage *image = [UIImage imageWithCGImage:cropCGImage scale:imageView.image.scale orientation:imageView.image.imageOrientation];
-        CGImageRelease(cropCGImage);
-        
-        if (i)
-        {
-            image_right = image;
-        }
-        else
-        {
-            image_left = image;
-        }
-    }
+//    以最大尺寸为准可以保证尺寸大图片的清晰度，小的不会有影响
+    CGFloat height = MAX(left.size.height, right.size.height);
     
 //  可以把图片绘制到指定大小 但是图片会有稍微模糊  使用图片原尺寸拼接则不会有变化
-    CGSize size = CGSizeMake(image_left.size.height, image_left.size.height);
+    CGSize size = CGSizeMake(height, height);
     UIGraphicsBeginImageContextWithOptions(size, NO, 1);
-    [image_left drawInRect:CGRectMake(0, 0, size.width/2.0, size.height)];
-    [image_right drawInRect:CGRectMake(size.width/2.0, 0, size.width/2.0, size.height)];
+    [left drawInRect:CGRectMake(0, 0, size.width/2.0, size.height)];
+    [right drawInRect:CGRectMake(size.width/2.0, 0, size.width/2.0, size.height)];
     UIImage * newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     

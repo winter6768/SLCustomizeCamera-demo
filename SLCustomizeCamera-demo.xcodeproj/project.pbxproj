@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		C825189C1D814B4500D08109 /* UIImage+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = C825189B1D814B4500D08109 /* UIImage+Orientation.m */; };
+		C84C4B0B1D93CA43002C557B /* SLPSImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C84C4B0A1D93CA43002C557B /* SLPSImageCell.m */; };
+		C84C4B0E1D93D5A5002C557B /* SLPSImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C84C4B0D1D93D5A5002C557B /* SLPSImageModel.m */; };
 		C8A359C91D8E6E2A00F4FEFF /* SLRotateImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A359C81D8E6E2A00F4FEFF /* SLRotateImageViewController.m */; };
 		C8A359CC1D8E903C00F4FEFF /* SLImageViewerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A359CB1D8E903C00F4FEFF /* SLImageViewerView.m */; };
 		C8A786711D8286C60074AC39 /* SLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A786701D8286C60074AC39 /* SLButton.m */; };
 		C8A786741D82AF520074AC39 /* SLAlbumsListView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A786731D82AF520074AC39 /* SLAlbumsListView.m */; };
+		C8AC8E841D93847700FD9A91 /* SLPSTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AC8E831D93847700FD9A91 /* SLPSTitleView.m */; };
 		C8AD88C51D865030009E0973 /* SLAlbumsResource.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AD88C41D865030009E0973 /* SLAlbumsResource.m */; };
 		C8AD88C81D86980A009E0973 /* SLAlbumsGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AD88C71D86980A009E0973 /* SLAlbumsGroupModel.m */; };
 		C8AD88CB1D86A931009E0973 /* SLAlbumsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AD88CA1D86A931009E0973 /* SLAlbumsCell.m */; };
@@ -31,7 +34,6 @@
 		C8CF443D1D7FEBB100760005 /* CALayer+SLCameraAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF443C1D7FEBB100760005 /* CALayer+SLCameraAnimation.m */; };
 		C8CF44401D7FEBE400760005 /* UIImage+SLFilterEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF443F1D7FEBE400760005 /* UIImage+SLFilterEffect.m */; };
 		C8CF44431D7FEC0500760005 /* SLFilterEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF44421D7FEC0500760005 /* SLFilterEffect.m */; };
-		C8CF44461D7FEC2200760005 /* SLPSImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CF44451D7FEC2200760005 /* SLPSImageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,10 @@
 /* Begin PBXFileReference section */
 		C825189A1D814B4500D08109 /* UIImage+Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Orientation.h"; sourceTree = "<group>"; };
 		C825189B1D814B4500D08109 /* UIImage+Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Orientation.m"; sourceTree = "<group>"; };
+		C84C4B091D93CA43002C557B /* SLPSImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLPSImageCell.h; sourceTree = "<group>"; };
+		C84C4B0A1D93CA43002C557B /* SLPSImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLPSImageCell.m; sourceTree = "<group>"; };
+		C84C4B0C1D93D5A5002C557B /* SLPSImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLPSImageModel.h; sourceTree = "<group>"; };
+		C84C4B0D1D93D5A5002C557B /* SLPSImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLPSImageModel.m; sourceTree = "<group>"; };
 		C8A359C71D8E6E2A00F4FEFF /* SLRotateImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLRotateImageViewController.h; sourceTree = "<group>"; };
 		C8A359C81D8E6E2A00F4FEFF /* SLRotateImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLRotateImageViewController.m; sourceTree = "<group>"; };
 		C8A359CA1D8E903C00F4FEFF /* SLImageViewerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLImageViewerView.h; sourceTree = "<group>"; };
@@ -62,6 +68,8 @@
 		C8A786701D8286C60074AC39 /* SLButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLButton.m; sourceTree = "<group>"; };
 		C8A786721D82AF520074AC39 /* SLAlbumsListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLAlbumsListView.h; sourceTree = "<group>"; };
 		C8A786731D82AF520074AC39 /* SLAlbumsListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLAlbumsListView.m; sourceTree = "<group>"; };
+		C8AC8E821D93847700FD9A91 /* SLPSTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLPSTitleView.h; sourceTree = "<group>"; };
+		C8AC8E831D93847700FD9A91 /* SLPSTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLPSTitleView.m; sourceTree = "<group>"; };
 		C8AD88C31D865030009E0973 /* SLAlbumsResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLAlbumsResource.h; sourceTree = "<group>"; };
 		C8AD88C41D865030009E0973 /* SLAlbumsResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLAlbumsResource.m; sourceTree = "<group>"; };
 		C8AD88C61D86980A009E0973 /* SLAlbumsGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLAlbumsGroupModel.h; sourceTree = "<group>"; };
@@ -100,8 +108,6 @@
 		C8CF443F1D7FEBE400760005 /* UIImage+SLFilterEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SLFilterEffect.m"; sourceTree = "<group>"; };
 		C8CF44411D7FEC0500760005 /* SLFilterEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLFilterEffect.h; sourceTree = "<group>"; };
 		C8CF44421D7FEC0500760005 /* SLFilterEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLFilterEffect.m; sourceTree = "<group>"; };
-		C8CF44441D7FEC2200760005 /* SLPSImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLPSImageView.h; sourceTree = "<group>"; };
-		C8CF44451D7FEC2200760005 /* SLPSImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLPSImageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,14 +223,18 @@
 				C8AD88C71D86980A009E0973 /* SLAlbumsGroupModel.m */,
 				C8CF443B1D7FEBB100760005 /* CALayer+SLCameraAnimation.h */,
 				C8CF443C1D7FEBB100760005 /* CALayer+SLCameraAnimation.m */,
-				C8CF443E1D7FEBE400760005 /* UIImage+SLFilterEffect.h */,
-				C8CF443F1D7FEBE400760005 /* UIImage+SLFilterEffect.m */,
 				C825189A1D814B4500D08109 /* UIImage+Orientation.h */,
 				C825189B1D814B4500D08109 /* UIImage+Orientation.m */,
+				C8CF443E1D7FEBE400760005 /* UIImage+SLFilterEffect.h */,
+				C8CF443F1D7FEBE400760005 /* UIImage+SLFilterEffect.m */,
 				C8CF44411D7FEC0500760005 /* SLFilterEffect.h */,
 				C8CF44421D7FEC0500760005 /* SLFilterEffect.m */,
-				C8CF44441D7FEC2200760005 /* SLPSImageView.h */,
-				C8CF44451D7FEC2200760005 /* SLPSImageView.m */,
+				C84C4B0C1D93D5A5002C557B /* SLPSImageModel.h */,
+				C84C4B0D1D93D5A5002C557B /* SLPSImageModel.m */,
+				C84C4B091D93CA43002C557B /* SLPSImageCell.h */,
+				C84C4B0A1D93CA43002C557B /* SLPSImageCell.m */,
+				C8AC8E821D93847700FD9A91 /* SLPSTitleView.h */,
+				C8AC8E831D93847700FD9A91 /* SLPSTitleView.m */,
 				C8A359CA1D8E903C00F4FEFF /* SLImageViewerView.h */,
 				C8A359CB1D8E903C00F4FEFF /* SLImageViewerView.m */,
 				C8A7866F1D8286C60074AC39 /* SLButton.h */,
@@ -366,9 +376,12 @@
 				C8A786741D82AF520074AC39 /* SLAlbumsListView.m in Sources */,
 				C8A359C91D8E6E2A00F4FEFF /* SLRotateImageViewController.m in Sources */,
 				C825189C1D814B4500D08109 /* UIImage+Orientation.m in Sources */,
+				C84C4B0E1D93D5A5002C557B /* SLPSImageModel.m in Sources */,
 				C8CF43FD1D7FBCCF00760005 /* ViewController.m in Sources */,
 				C8CF44431D7FEC0500760005 /* SLFilterEffect.m in Sources */,
+				C8AC8E841D93847700FD9A91 /* SLPSTitleView.m in Sources */,
 				C8CF44371D7FC2B600760005 /* SLCompareViewController.m in Sources */,
+				C84C4B0B1D93CA43002C557B /* SLPSImageCell.m in Sources */,
 				C8CF44311D7FC21200760005 /* SLSingleViewController.m in Sources */,
 				C8CF43FA1D7FBCCF00760005 /* AppDelegate.m in Sources */,
 				C8CF43F71D7FBCCF00760005 /* main.m in Sources */,
@@ -380,7 +393,6 @@
 				C8AD88C81D86980A009E0973 /* SLAlbumsGroupModel.m in Sources */,
 				C8A786711D8286C60074AC39 /* SLButton.m in Sources */,
 				C8CF442E1D7FC1CF00760005 /* SLCustomizeCameraController.m in Sources */,
-				C8CF44461D7FEC2200760005 /* SLPSImageView.m in Sources */,
 				C8AD88CB1D86A931009E0973 /* SLAlbumsCell.m in Sources */,
 				C8CF443D1D7FEBB100760005 /* CALayer+SLCameraAnimation.m in Sources */,
 			);

@@ -13,4 +13,6 @@
 
 @property(nonatomic,strong)SLAlbumsGroupModel *recentPhotosModel;
 
+@property(nonatomic,copy)void(^compareDidSelectBlock)(UIImage *);
+
 @end
